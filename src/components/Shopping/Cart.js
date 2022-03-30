@@ -11,7 +11,8 @@ class Cart extends Component {
         return (
             <div className="cart-container">
                 <span className="cart-emoji">📦</span>
-                <div>Items: {this.props.itemsCount}<br />
+                <div>summary:<br />
+                Items: {this.props.itemsCount}<br />
                 Total: {this.props.total} $</div>
             </div>
 
