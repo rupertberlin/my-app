@@ -2,15 +2,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .product-container h4 {
     width: 100%;
 }
 
+.product-container h3 {
+    margin-top: -10px;
+}
+.product-container p {
+    margin-top: -20px;
+}
+
 .product {
-    font-size: 72px;
+    font-size: 79px;
     width: 100px;
     user-select: none;
     border-radius: 200px;

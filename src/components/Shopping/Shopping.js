@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Classcounter from "./Classcounter";
 import Product from "./Product";
 import Cart from "./Cart";
+import Headline from "../Headline";
 
 const products = [
   {
@@ -15,8 +16,8 @@ const products = [
     price: 2.5,
   },
   {
-    emoji: "🍉",
-    name: "watermelon",
+    emoji: "🍺",
+    name: "beer",
     price: 4,
   },
 ];
@@ -36,6 +37,9 @@ class Shopping extends Component {
     this.chooseItem = this.chooseItem.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
+    this.sumItems = this.sumItems.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
+    this.goNext = this.goNext.bind(this);
   }
   decrement() {
     if (this.state.counter > 0) {
@@ -67,29 +71,77 @@ class Shopping extends Component {
       this.setState((state) => ({
         cart: [
           ...this.state.cart,
-          { product: item.name, units: state.counter, price: item.price },
+          { product: item.name, units: state.counter, price: item.price*state.counter},
         ],
-        counter: 0,
+  
       }));
     } else {
-      console.log(this.state);
-      console.log(allreadyIn);
-      this.setState((state) => ({
-        
-        cart: [...this.state.cart, { /* units: state.cart.units + state.counter  */}],
-      }));
+      let pos = this.state.cart.map(function(e) { return e.product; }).indexOf(item.name);
+      let tmpCart = this.state.cart;
+      tmpCart[pos] = {
+        product: item.name,
+        units: tmpCart[pos].units + this.state.counter,
+        price: tmpCart[pos].price + this.state.counter * item.price,
+      }
+      this.setState(state => ({
+        cart: tmpCart,
+      }))
+      
     }
+    this.setState(state =>({
+      counter: 0,
+    }))
+    setTimeout(() => this.sumItems(), 500);
+    setTimeout(() => this.calculateTotal(), 500);
+  }
 
-    this.calculateTotal();
+  goNext(current){
+    switch(current){
+      case 'ice cream':
+        this.setState(state =>({
+          item: products[1],
+        }))
+        break;
+      case 'donuts':
+        this.setState(state =>({
+          item: products[2],
+        }))
+        break;
+      case 'beer':
+        this.setState(state =>({
+          item: products[1],
+        }))
+        break; 
+    }
+  }
+
+  removeFromCart(item, count) {
+    
+
   }
 
   calculateTotal() {
-    this.setState((state) => {
-      total: this.state.cart.reduce((acc, item, index) => {
-        return acc + item.unit * item.price;
-      }, 0);
-    });
+    let sumCart = this.state.cart.reduce((acc, cartItem, index) => {
+      return (
+        acc+cartItem.price 
+      );
+    },0)
+    this.setState(state => ({
+      total: sumCart,
+    }))
   }
+
+  sumItems() {
+    let sumItems = this.state.cart.reduce((acc, cartItem, index) => {
+      return (
+        acc+cartItem.units
+      );
+    },0)
+    this.setState(state => ({
+      itemsCount: sumItems,
+    }))
+  }
+
 
   render() {
     return (
@@ -100,10 +152,13 @@ class Shopping extends Component {
           cart={this.state.cart}
         />
 
+        <Headline />
+
         <Product
           products={products}
           item={this.state.item}
           chooseItem={this.chooseItem}
+          cart={this.state.cart}
         />
 
         <Classcounter
@@ -112,11 +167,17 @@ class Shopping extends Component {
           increment={this.increment}
           addToCart={this.addToCart}
           item={this.state.item}
+          goNext={this.goNext}
         />
 
         <div>
+          <p>
           {!this.state.cart ||
-            this.state.cart.map((item) => item.units + " " + item.product)}
+            this.state.cart.
+            filter(e=>e.product===this.state.item.name)
+            .map((item) => item.units + ' ' + this.state.item.name.charAt(0).toUpperCase() + this.state.item.name.slice(1) + ' inside your cart.')
+            }
+            </p>
         </div>
       </div>
     );

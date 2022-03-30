@@ -3,7 +3,7 @@ import './App/App.css';
 function Headline() {
   return (
     <div className="App">
-      <h1>This is my first React App</h1>
+      <h1>IDB-Box Mailorder</h1>
     </div>
   );
 }

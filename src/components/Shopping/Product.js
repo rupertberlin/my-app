@@ -20,7 +20,8 @@ import './Product.css';
                 onClick={() => this.props.chooseItem(item)}>
                   {item.emoji}
                 </div>
-                
+                <h3>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>       
+                <p>{item.price}$ /unit</p>       
             </div>
             
             
@@ -32,7 +33,7 @@ import './Product.css';
 
         return (
             <div className='product-container'>
-                <h4>Choose your Product:</h4>
+                <h4>pack your box:</h4>
                 {itemsToBuy}
             </div>
         );

@@ -9,7 +9,7 @@ class Classcounter extends Component {
   render() {
     return (
       <div id="counter-container">
-        <h2>go shopping:</h2>
+        <h2>assemble:</h2>
         <div id="decrement" onClick={this.props.decrement}>
           -
         </div>
@@ -18,9 +18,12 @@ class Classcounter extends Component {
           +
         </div>
         <div id="buttons">
-          <button onClick={() => this.props.addToCart(this.props.item,this.props.count)}>Add</button><button>Remove</button>
+
+          <button onClick={() => this.props
+            .goNext(this.props.item.name)}>Next</button>
         </div>
       </div>
+ 
     );
   }
 }

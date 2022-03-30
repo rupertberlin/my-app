@@ -10,9 +10,9 @@ class Cart extends Component {
     render() {
         return (
             <div className="cart-container">
-                <span className="cart-emoji">🛒</span>
-                <p>Items: {this.props.itemsCount}<br /><br />
-                Total: {this.props.total} </p>
+                <span className="cart-emoji">📦</span>
+                <div>Items: {this.props.itemsCount}<br />
+                Total: {this.props.total} $</div>
             </div>
 
         );

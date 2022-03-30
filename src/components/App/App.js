@@ -8,7 +8,6 @@ import Shopping from '../Shopping/Shopping';
 function App() {
   return (
     <div className="App">
-      <Headline />
 
       <Shopping />
       
