@@ -1,0 +1,31 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-container h4 {
+    width: 100%;
+}
+
+.product {
+    font-size: 72px;
+    width: 100px;
+    user-select: none;
+    border-radius: 200px;
+    margin: 9px;
+    text-align: center;
+}
+
+.product:hover {
+    background: greenyellow;
+    font-size: 90px;
+}
+
+.choosed {
+    background: greenyellow;
+    border: solid 6px blue;
+    padding: 10px;
+    font-size: 90px;
+}

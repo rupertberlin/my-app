@@ -1,0 +1,30 @@
+#counter-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-flow: wrap;
+}
+
+#counter-container h2 {
+    width: 100%;
+}
+
+#counter {
+    height: 90px;
+    width: 90px;
+    border-radius: 100px;
+    background: greenyellow;
+    margin-inline: -20px;
+    font-size: 64px;
+    z-index: -5;
+}
+
+#decrement, #increment {
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    background:lightskyblue;
+    text-align: center;
+    font-size: 43px;
+    user-select: none;
+}

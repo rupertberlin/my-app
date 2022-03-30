@@ -1,0 +1,15 @@
+.cart-emoji {
+    font-size: 73px;
+}
+
+.cart-container {
+    display: flex;
+    justify-content: center;
+    background: lightseagreen;
+}
+
+.cart-container p {
+    font-size: 17px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 800;
+}
