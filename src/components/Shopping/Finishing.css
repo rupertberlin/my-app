@@ -16,3 +16,7 @@
 .status-bar span {
     user-select: none;
 }
+
+.status-bar span:hover {
+    background: magenta;
+}
