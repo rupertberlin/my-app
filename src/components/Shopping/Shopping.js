@@ -3,6 +3,7 @@ import Classcounter from "./Classcounter";
 import Product from "./Product";
 import Cart from "./Cart";
 import Headline from "../Headline";
+import Finishing from "./Finishing";
 
 const products = [
   {
@@ -47,14 +48,16 @@ class Shopping extends Component {
           price: 0,
         },
       ],
+      endButton: false,
+      finishing: false,
     };
     this.decrement = this.decrement.bind(this);
     this.increment = this.increment.bind(this);
     this.chooseItem = this.chooseItem.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.sumItems = this.sumItems.bind(this);
-    this.removeFromCart = this.removeFromCart.bind(this);
     this.goNext = this.goNext.bind(this);
+    this.closeFinishing = this.closeFinishing.bind(this);
   }
   decrement() {
     if (this.state.counter > 0) {
@@ -82,9 +85,12 @@ class Shopping extends Component {
               .filter((e) => e.product === item.name)
               .map((e) => e.units)
           ),
+          finishing: false,
         })),
       105
     );
+    item.name === 'beer'?this.setState(state=>({endButton:true})):
+      this.setState(state=>({endButton:false}));
   }
 
   updateCart(item) {
@@ -118,13 +124,17 @@ class Shopping extends Component {
         break;
       case "beer":
         this.setState((state) => ({
-          item: products[1],
+          finishing: true,
         }));
         break;
     }
   }
 
-  removeFromCart(item, count) {}
+  closeFinishing() {
+    this.setState(state => ({
+      finishing: !this.state.finishing,
+    }))
+  }
 
   calculateTotal() {
     let sumCart = this.state.cart.reduce((acc, cartItem, index) => {
@@ -168,7 +178,13 @@ class Shopping extends Component {
           increment={this.increment}
           item={this.state.item}
           goNext={this.goNext}
+          endButton={this.state.endButton}
         />
+
+        {this.state.finishing &&
+        <Finishing 
+        close={this.closeFinishing}
+        />}
 
         <div>
           <p>

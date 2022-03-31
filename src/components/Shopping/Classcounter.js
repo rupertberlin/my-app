@@ -20,7 +20,9 @@ class Classcounter extends Component {
         <div id="buttons">
 
           <button onClick={() => this.props
-            .goNext(this.props.item.name)}>Next</button>
+            .goNext(this.props.item.name)}>
+              {!this.props.endButton?'Next':'ok'}
+              </button>
         </div>
       </div>
  

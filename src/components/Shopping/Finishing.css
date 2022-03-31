@@ -1,0 +1,18 @@
+.popup {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 65%;
+    background: grey;
+    opacity: 0.95;
+}
+
+.status-bar {
+    padding: 10px;
+    text-align: right;
+}
+
+.status-bar span {
+    user-select: none;
+}
